@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Sistema de Control</title>
+    
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+
+    <div id="Login" style="display:block; max-width:400px; margin:30px auto;">
+        <div class="card">
+            <h2>MI CONTROL</h2>
+
+            <label>Usuario</label>
+            <input type="text" id="login_user" placeholder="Ingrese su usuario" />
+
+            <label>Contraseña</label>
+            <input type="password" id="login_pass" placeholder="Ingrese su contraseña" />
+
+            <button class="btn-agregar" onclick="iniciarSesion()" style="width: 100%">INICIAR</button>
+        </div>
+    </div>
+
+    <div class="container" id="menu_inicio" style="display:none;">
+        <div id="datos">
+            <h2>COORDINADORA</h2>
+            <h3>Total Efectivo: Q0.00</h3>
+        </div>
+        <div class="menu_inicio">
+            <button class="btn_Abonos" onclick="showSection('abonos')">Abonos</button>
+            <button class="btn_Clientes" onclick="showSection('clientes')">Clientes</button>
+            <button class="btn_NuevaVenta" onclick="showSection('nuevaVenta')">Nueva Venta</button>
+            <button class="btn_Salir" onclick="logout()">Salir</button>
+        </div>
+    </div>
+
+    <div id="navbar" class="navbar" style="display:none;">
+        <button class="nav-btn" onclick="showSection('inicio')" id="btnNabInicio">Inicio</button>
+        <button class="nav-btn" onclick="showSection('abonos')" id="btnNabAbonos">Abonos</button>
+        <button class="nav-btn" onclick="showSection('clientes')" id="btnNabClientes">Clientes</button>
+        <button class="nav-btn" onclick="showSection('nuevaVenta')" id="btnNabNuevaVenta">Nueva Venta</button>
+        <button class="nav-btn" onclick="logout()" id="btnNabSalir">Salir</button>
+    </div>
+
+
+    <div id="Formulario_Abonos" style="display:none;">
+        <div class="card">
+            <h2>ABONOS</h2>
+            <div class="cliente-buscar-row">
+                <div class="form-item">
+                    <label>Cliente</label>
+                    <select class="selectVar">
+                        <option value="">Seleccione...</option>
+                    </select>
+                </div>
+                <button class="btn-buscar">BUSCAR</button>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-item">
+                    <label>Código de Compra</label>
+                    <select class="selectVar">
+                        <option value="">Seleccione...</option>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label>Saldo Actual</label>
+                    <input type="text"  value="Q0.00" readonly style="text-align: center;background:#eee; font-weight:bold;" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-item">
+                    <label>Monto</label>
+                    <input type="number" placeholder="Ingrese el monto" />
+                </div>
+                <div class="form-item">
+                    <label>Forma de Pago</label>
+                    <select>
+                        <option value="EFECTIVO">EFECTIVO</option>
+                        <option value="BANRURAL">BANRURAL</option>
+                        <option value="GYT">GYT</option>
+                    </select>
+                </div>
+            </div>
+
+            <label>Comentarios</label>
+            <textarea rows="2" placeholder="Comentarios"></textarea>
+
+            <div class="btn-row">
+                <button class="btn-cancelar">CANCELAR</button>
+                <button class="btn-agregar">AGREGAR</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>ABONOS DE LA SEMANA</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>FECHA</th>
+                        <th>CLIENTE</th>
+                        <th>MONTO</th>
+                        <th>FORMA DE PAGO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>25/12/25</td><td>Ana Patricia Hernandez</td><td>Q250</td><td>BANRURAL</td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="text-align: right" id="totalSemana">Total: Q 250.00</h3>
+        </div>
+    </div>
+
+
+    <div id="Formulario_Clientes" style="display:none;">
+        <div class="card">
+            <h2>CLIENTES</h2>
+
+            <div class="sub-navbar">
+                <button onclick="showCustomerSection('general')">General</button>
+                <button onclick="showCustomerSection('individual')">Individual</button>
+                <button onclick="showCustomerSection('nuevo')">Nuevo Cliente</button>
+            </div>
+
+            <div id="customer_general" style="display: block;">
+                <h3 style="text-align: center;">LISTA DE CLIENTES Y SALDO</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>CLIENTE</th>
+                            <th>SALDO TOTAL PENDIENTE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Juan Pérez</td><td>Q 1,500.00</td></tr>
+                        <tr><td>María López</td><td>Q 850.00</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="customer_individual" style="display: none;">
+                <h3 style="text-align: center;">DETALLE DE COMPRAS Y ABONOS</h3>
+                
+                <div class="cliente-buscar-row">
+                    <div class="form-item">
+                        <label>Cliente</label>
+                        <select>
+                            <option>Seleccionar cliente...</option>
+                        </select>
+                    </div>
+                    <div class="form-item">
+                        <label>Código de Compra</label>
+                        <select>
+                            <option>Seleccionar código...</option>
+                        </select>
+                    </div>
+                    <button class="btn-buscar">BUSCAR</button>
+                </div>
+
+                <div class="info-label-row">
+                    <div class="info-item total-abonado">
+                        Total Abonado: Q 150.00
+                    </div>
+                    <div class="info-item saldo-pendiente">
+                        Saldo Pendiente: Q 700.00
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>FECHA</th>
+                            <th>MONTO ABONADO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2025-11-01</td><td>Q 50.00</td></tr>
+                        <tr><td>2025-11-08</td><td>Q 100.00</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="customer_nuevo" style="display: none;">
+                <h3 style="text-align: center;">REGISTRAR NUEVO CLIENTE</h3>
+                
+                <label>Nombres</label>
+                <input type="text" id="nombre_cliente" placeholder="Nombres del cliente" />
+
+                <label>Apellidos</label>
+                <input type="text" id="apellido_cliente" placeholder="Apellidos del cliente" />
+                
+                <div class="form-row">
+                    <div class="form-item">
+                        <label>DPI</label>
+                        <input type="text" id="dpi_cliente" placeholder="Número de DPI" />
+                    </div>
+                    <div class="form-item">
+                        <label>Teléfono</label>
+                        <input type="number" id="telefono_cliente" placeholder="Número de teléfono" />
+                    </div>
+                </div>
+
+                <label>Dirección</label>
+                <textarea rows="2" id="direccion_cliente" placeholder="Dirección completa"></textarea>
+                
+                <div class="btn-row">
+                    <button class="btn-borrar" onclick="limpiarFormularioCliente()">BORRAR</button>
+                    <button class="btn-agregar" onclick="guardarNuevoCliente()">AGREGAR</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div id="Formulario_NuevaVenta" style="display:none;">
+
+        <div class="card">
+            <h2 class="section-title-card" style="background: #555;">NUEVA VENTA</h2>
+
+            <label class="form-label-box">CLIENTE</label>
+            <select>
+                <option>Seleccionar cliente...</option>
+            </select>
+
+            <label class="form-label-box">FORMA DE PAGO</label>
+            <select style="margin-bottom: 25px;">
+                <option>Seleccionar forma de pago...</option>
+                <option value="CONTADO">CONTADO</option>
+                <option value="SEMANAL">SEMANAL</option>
+                <option value="QUINCENAL">QUINCENAL</option>
+            </select>
+
+            <div style="display: flex; justify-content: flex-end;">
+                <button class="btn-iniciar" style="margin-bottom: 0; flex: 0 0 120px;">INICIAR</button>
+            </div>
+        </div>
+
+        <div class="card">
+
+            <div class="cliente-buscar-row">
+                <div class="form-item">
+                    <label class="form-label-box" style="margin-bottom: 0;">CÓDIGO PRODUCTO</label>
+                    <select>
+                        <option>Seleccionar código...</option>
+                    </select>
+                </div>
+                <button class="btn-buscar">BUSCAR</button>
+            </div>
+
+            <label class="section-title-card">DESCRIPCION</label>
+            <input type="text" value="Producto X" readonly style="text-align: center; background:#eee; font-weight:bold; margin-bottom: 10px;" />
+
+            <label class="section-title-card">PRECIO</label>
+            <input type="text" value="Q 0.00" readonly style="text-align: center; background:#eee; font-weight:bold; margin-bottom: 25px;" />
+
+            <div class="cantidad-agregar-row">
+                <input type="number" placeholder="CANTIDAD" style="flex: 1; text-align: center; background: white;" />
+                <button class="btn-agregar" style="flex: 1;">AGREGAR</button>
+            </div>
+        </div>
+
+        <div class="table-card-nv">
+            <h2 class="section-title-card">PRODUCTOS</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>CODIGO</th>
+                        <th>DESCRIPCION</th>
+                        <th>PRECIO UNITARIO</th>
+                        <th>CANTIDAD</th>
+                        <th>SUBTOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A123</td><td>Zapatos</td><td>Q150.00</td><td>1</td><td>Q150.00</td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+
+            <div style="text-align: right; margin-top: 10px;">
+                <span class="total-label">TOTAL: Q 0.00</span>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <label class="section-title-card">ENGANCHE ESPERADO</label>
+            <input type="text" value="Q 0.00" readonly style="text-align: center; background:#eee; font-weight:bold; margin-bottom: 25px;" />
+
+            <div class="cantidad-agregar-row">
+                <input type="number" placeholder="ENGANCHE RECIBIDO" style="flex: 1; text-align: center; background: white; margin-bottom: 0;" />
+                <button class="btn-finalizar" style="flex: 1;">FINALIZAR</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script> 
+
+</body>
+</html>
