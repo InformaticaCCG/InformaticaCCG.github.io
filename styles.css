@@ -1,0 +1,388 @@
+/* 1. Base y Reset */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    margin: 0;
+    padding: 10px;
+    padding-top: 70px;
+    width: 100%; 
+    min-width: 320px; 
+    overflow-x: hidden;
+}
+
+/* 2. Estilos Comunes de Contenedor */
+.card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 550px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 0;
+    color: #333;
+}
+
+h3 {
+    font-size: 1em;
+}
+
+.section-title-card {
+    background: #FF7F27;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+
+/* 3. Estilos de Formulario */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-label-box {
+    background: #00A3A3;
+    color: white;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+select, input[type="text"], input[type="password"], input[type="number"], textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-label-box + select, .form-label-box + input {
+    border-radius: 0 0 8px 8px;
+    margin-top: 0;
+}
+
+select:focus, input:focus, textarea:focus {
+    border-color: #27AE60;
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+#login_pass, #login_user{
+    width: 100%;
+}
+
+/* 4. Botones */
+.btn-row, .form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.form-item {
+    flex: 1 1 45%;
+    min-width: 120px;
+}
+
+button {
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s, transform 0.1s;
+    flex: 1;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.btn-cancelar, .btn-borrar { background: rgba(204, 46, 46, 0.9); }
+.btn-agregar { background: #27AE60; }
+.btn-buscar  { background: #2ECC71; }
+
+.btn-iniciar, .btn-finalizar { background: #27AE60; }
+.btn-accion-producto { background: #2ECC71; }
+.btn-enganche { background: #E0E0E0; color: #333; }
+.btn-total { background: #FF7F27; }
+
+.cliente-buscar-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end; 
+    margin-bottom: 15px;
+    flex-wrap: nowrap;
+}
+
+.cliente-buscar-row > .form-item {
+    flex: 1;
+}
+
+.cliente-buscar-row > button.btn-buscar {
+    flex: 0 0 120px;
+    margin-bottom: 0; 
+}
+
+.cantidad-agregar-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.cantidad-agregar-row input {
+    margin-bottom: 0;
+    border-radius: 8px;
+    background: white;
+}
+
+.cantidad-agregar-row button {
+    flex: 1;
+}
+
+.total-label {
+    background: #FF7F27; 
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: inline-block; 
+}
+
+
+/* 5. Estilos de Tabla */
+.table-card-nv {
+    background: #fff; 
+    color: #333;
+    padding: 15px 15px 5px 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 550px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table-card-nv h2 {
+    color: #333; 
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    overflow-x: auto;
+    display: block;
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+#customer_individual table {
+    max-width: 450px; 
+}
+
+.table-card-nv table {
+    margin-top: 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 0.9rem;
+    vertical-align: top;
+    background: white; 
+    color: #333; 
+}
+
+th {
+    background: #333;
+    color: white;
+    white-space: nowrap;
+}
+
+.table-card-nv th, .table-card-nv td {
+    text-align: center;
+}
+
+.table-card-nv thead th:last-child {
+    width: 25%;
+}
+
+
+/* 6. NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #27AE60;
+    padding: 8px 10px;
+    display: none;
+    justify-content: space-around;
+    gap: 5px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.navbar button.nav-btn {
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: #2ECC71;
+    font-size: 0.9rem;
+    flex: 1;
+}
+
+/* 7. MENU INICIO GRID */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 70px);
+    width: 100%;
+    padding-top: 10px;
+    flex-direction: column;
+}
+
+#datos {
+    margin-bottom: 20px;
+    text-align: center;
+    max-width: 300px;
+    width: 90%;
+}
+
+.menu_inicio {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 300px;
+    width: 90%;
+}
+
+.menu_inicio button {
+    width: 100%;
+    height: 120px;
+    border-radius: 15px;
+    background: #27AE60;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* 9. SUB-NAVBAR */
+.sub-navbar {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; 
+}
+
+.sub-navbar button {
+    background: #2ECC71; 
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    flex: 1;
+    min-width: 100px; 
+}
+
+.info-label-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.info-label-row .info-item {
+    flex: 1 1 45%;
+    padding: 12px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    min-width: 150px;
+}
+
+.total-abonado { color: #27AE60; } 
+.saldo-pendiente { color: #CC2E2E; } 
+
+
+/* 8. MEDIA QUERIES (Responsividad) */
+@media (max-width: 600px) {
+    .form-row, .btn-row {
+        flex-direction: column;
+    }
+    
+    .sub-navbar button {
+        flex: 1 1 100%; 
+        margin-bottom: 5px;
+    }
+    
+    .table-card-nv th, .table-card-nv td {
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+    
+    .card table {
+        overflow-x: auto;
+        display: block;
+        width: 100%;
+    }
+    
+    .card th, .card td {
+        white-space: nowrap; 
+    }
+
+    .cliente-buscar-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cliente-buscar-row > button.btn-buscar {
+        flex: 0 0 auto;
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .navbar button.nav-btn {
+        font-size: 0.8rem;
+        padding: 6px 4px;
+    }
+    .menu_inicio button {
+        height: 100px;
+        font-size: 1rem;
+    }
+}
